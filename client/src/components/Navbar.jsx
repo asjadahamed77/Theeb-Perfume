@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import logo from "../assets/Logo/Theeb.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import profile from "../assets/icons/user.png";
 import cart from "../assets/icons/cart.png";
 import menu from "../assets/icons/menu.png";
@@ -12,10 +12,13 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { currency } = useContext(ShopContext);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const location = useLocation(); 
+
+  const isActive = (path) => location.pathname === path; 
   return (
     <div className="flex items-center py-2 justify-around">
       {/* Mobile Menu Icon */}
-      <div>
+      <div className="lg:hidden">
         <img
           onClick={() => setShowMobileMenu(true)}
           className={`lg:hidden w-8`}
@@ -38,24 +41,58 @@ const Navbar = () => {
       {/* Navlinks */}
       <ul className="hidden lg:flex gap-4">
         <li className="relative group">
-          <Link to={"/"}>HOME</Link>
-          <span className="absolute bottom-[-2px] left-1/2 transform -translate-x-1/2 w-0 h-[2px] bg-mainColor transition-all duration-300  group-hover:w-[75%]"></span>
-        </li>
-
-        <li className="relative group">
-          <Link to={"/brands"}>BRANDS</Link>
-          <span className="absolute bottom-[-2px] left-1/2 transform -translate-x-1/2 w-0 h-[2px] bg-mainColor transition-all duration-300  group-hover:w-[75%]"></span>
-        </li>
-        <li className="relative group">
-          <Link to={"/perfumes"}>PERFUMES</Link>
-          <span className="absolute bottom-[-2px] left-1/2 transform -translate-x-1/2 w-0 h-[2px] bg-mainColor transition-all duration-300  group-hover:w-[75%]"></span>
-        </li>
-        <li className="relative group">
-          <Link to={"/about-us"}>ABOUT US</Link>
+          <Link
+            to="/"
+            className={`${
+              isActive("/") ? "font-semibold text-mainColor" : ""
+            }`}
+          >
+            HOME
+          </Link>
           <span className="absolute bottom-[-2px] left-1/2 transform -translate-x-1/2 w-0 h-[2px] bg-mainColor transition-all duration-300  group-hover:w-[75%]"></span>
         </li>
         <li className="relative group">
-          <Link to={"/contact-us"}>CONTACT US</Link>
+          <Link
+            to="/brands"
+            className={`${
+              isActive("/brands") ? "font-semibold text-mainColor" : ""
+            }`}
+          >
+            BRANDS
+          </Link>
+          <span className="absolute bottom-[-2px] left-1/2 transform -translate-x-1/2 w-0 h-[2px] bg-mainColor transition-all duration-300  group-hover:w-[75%]"></span>
+        </li>
+        <li className="relative group">
+          <Link
+            to="/perfumes"
+            className={`${
+              isActive("/perfumes") ? "font-semibold text-mainColor" : ""
+            }`}
+          >
+            PERFUMES
+          </Link>
+          <span className="absolute bottom-[-2px] left-1/2 transform -translate-x-1/2 w-0 h-[2px] bg-mainColor transition-all duration-300  group-hover:w-[75%]"></span>
+        </li>
+        <li className="relative group">
+          <Link
+            to="/about-us"
+            className={`${
+              isActive("/about-us") ? "font-semibold text-mainColor" : ""
+            }`}
+          >
+            ABOUT US
+          </Link>
+          <span className="absolute bottom-[-2px] left-1/2 transform -translate-x-1/2 w-0 h-[2px] bg-mainColor transition-all duration-300  group-hover:w-[75%]"></span>
+        </li>
+        <li className="relative group">
+          <Link
+            to="/contact-us"
+            className={`${
+              isActive("/contact-us") ? "font-semibold text-mainColor" : ""
+            }`}
+          >
+            CONTACT US
+          </Link>
           <span className="absolute bottom-[-2px] left-1/2 transform -translate-x-1/2 w-0 h-[2px] bg-mainColor transition-all duration-300  group-hover:w-[75%]"></span>
         </li>
       </ul>
