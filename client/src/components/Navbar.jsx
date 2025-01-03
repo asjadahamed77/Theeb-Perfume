@@ -8,7 +8,7 @@ import close from "../assets/icons/close.png";
 import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
-  const [userToken, setUserToken] = useState(true);
+  const [userToken, setUserToken] = useState(false);
   const navigate = useNavigate();
   const { currency } = useContext(ShopContext);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -145,7 +145,7 @@ const Navbar = () => {
               navigate("/login");
               window.scrollTo(0, 0);
             }}
-            className="bg-mainColor text-white text-xs px-6 py-2 rounded-full hover:opacity-80 duration-300"
+            className={`${isActive('/login')||isActive('/sign-up')?"hidden":""} bg-mainColor text-white text-xs px-6 py-2 rounded-full hover:opacity-80 duration-300`}
           >
             LOGIN
           </button>
